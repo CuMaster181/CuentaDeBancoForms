@@ -5,35 +5,14 @@ namespace CuentaDeBancoForms
 {
     public partial class Form1 : Form
     {
-        private Cuenta cuenta;
+        private Cuenta? cuenta;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void btnCrear_Click(object sender, EventArgs e)
-        {
-            var titular = txtTitular.Text.Trim();
-            var numero = txtNumero.Text.Trim();
-            var saldoInicial = (double)nudSaldoInicial.Value;
-
-            if (string.IsNullOrEmpty(titular))
-            {
-                MessageBox.Show("Introduce el titular.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(numero))
-            {
-                MessageBox.Show("Introduce el número de cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            cuenta = new Cuenta(titular, saldoInicial, numero);
-            txtSalida.Text = $"Cuenta creada:\r\n{cuenta}\r\n";
-        }
-
+        
         private void btnDepositar_Click(object sender, EventArgs e)
         {
             if (!VerificarCuenta()) return;
@@ -80,7 +59,6 @@ namespace CuentaDeBancoForms
         {
             txtTitular.Clear();
             txtNumero.Clear();
-            nudSaldoInicial.Value = 0;
             nudCantidad.Value = 0;
             txtSalida.Clear();
             cuenta = null;

@@ -10,7 +10,7 @@ namespace CuentaDeBancoForms
     {
         //atributos
         private string titular;
-        private double saldo;
+        private double saldo = 0.0;
         private string numeroCuenta;
 
         //constructor
