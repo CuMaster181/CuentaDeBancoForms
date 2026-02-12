@@ -18,6 +18,7 @@
         private System.Windows.Forms.Button btnMostrar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.TextBox txtSalida;
+        private System.Windows.Forms.ToolTip toolTip1;
 
         protected override void Dispose(bool disposing)
         {
@@ -30,90 +31,117 @@
 
         private void InitializeComponent()
         {
-            lblTitular = new Label();
-            txtTitular = new TextBox();
-            lblNumero = new Label();
-            txtNumero = new TextBox();
-            btnCrear = new Button();
-            gbOperaciones = new GroupBox();
-            nudCantidad = new NumericUpDown();
-            btnDepositar = new Button();
-            btnRetirar = new Button();
-            btnMostrar = new Button();
-            btnLimpiar = new Button();
-            txtSalida = new TextBox();
+            lblTitular = new System.Windows.Forms.Label();
+            txtTitular = new System.Windows.Forms.TextBox();
+            lblNumero = new System.Windows.Forms.Label();
+            txtNumero = new System.Windows.Forms.TextBox();
+            lblSaldoInicial = new System.Windows.Forms.Label();
+            nudSaldoInicial = new System.Windows.Forms.NumericUpDown();
+            btnCrear = new System.Windows.Forms.Button();
+            gbOperaciones = new System.Windows.Forms.GroupBox();
+            nudCantidad = new System.Windows.Forms.NumericUpDown();
+            btnDepositar = new System.Windows.Forms.Button();
+            btnRetirar = new System.Windows.Forms.Button();
+            btnMostrar = new System.Windows.Forms.Button();
+            btnLimpiar = new System.Windows.Forms.Button();
+            txtSalida = new System.Windows.Forms.TextBox();
+            toolTip1 = new System.Windows.Forms.ToolTip();
             gbOperaciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudCantidad).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudSaldoInicial).BeginInit();
             SuspendLayout();
             // 
             // lblTitular
             // 
             lblTitular.AutoSize = true;
-            lblTitular.Location = new Point(16, 16);
+            lblTitular.Location = new System.Drawing.Point(16, 16);
             lblTitular.Name = "lblTitular";
-            lblTitular.Size = new Size(51, 20);
+            lblTitular.Size = new System.Drawing.Size(51, 20);
             lblTitular.TabIndex = 0;
             lblTitular.Text = "Titular";
             // 
             // txtTitular
             // 
-            txtTitular.Location = new Point(16, 34);
+            txtTitular.Location = new System.Drawing.Point(16, 34);
             txtTitular.Name = "txtTitular";
-            txtTitular.Size = new Size(260, 27);
+            txtTitular.Size = new System.Drawing.Size(260, 27);
             txtTitular.TabIndex = 1;
+            toolTip1.SetToolTip(txtTitular, "Nombre completo del titular de la cuenta");
             // 
             // lblNumero
             // 
             lblNumero.AutoSize = true;
-            lblNumero.Location = new Point(16, 64);
+            lblNumero.Location = new System.Drawing.Point(16, 64);
             lblNumero.Name = "lblNumero";
-            lblNumero.Size = new Size(132, 20);
+            lblNumero.Size = new System.Drawing.Size(132, 20);
             lblNumero.TabIndex = 2;
             lblNumero.Text = "Número de cuenta";
             // 
             // txtNumero
             // 
-            txtNumero.Location = new Point(16, 82);
+            txtNumero.Location = new System.Drawing.Point(16, 82);
             txtNumero.Name = "txtNumero";
-            txtNumero.Size = new Size(260, 27);
+            txtNumero.Size = new System.Drawing.Size(260, 27);
             txtNumero.TabIndex = 3;
+            toolTip1.SetToolTip(txtNumero, "Identificador único de la cuenta");
+            // 
+            // lblSaldoInicial
+            // 
+            lblSaldoInicial.AutoSize = true;
+            lblSaldoInicial.Location = new System.Drawing.Point(16, 112);
+            lblSaldoInicial.Name = "lblSaldoInicial";
+            lblSaldoInicial.Size = new System.Drawing.Size(86, 20);
+            lblSaldoInicial.TabIndex = 4;
+            lblSaldoInicial.Text = "Saldo inicial";
+            // 
+            // nudSaldoInicial
+            // 
+            nudSaldoInicial.DecimalPlaces = 2;
+            nudSaldoInicial.Location = new System.Drawing.Point(16, 130);
+            nudSaldoInicial.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            nudSaldoInicial.Name = "nudSaldoInicial";
+            nudSaldoInicial.Size = new System.Drawing.Size(120, 27);
+            nudSaldoInicial.TabIndex = 5;
+            nudSaldoInicial.ThousandsSeparator = true;
+            toolTip1.SetToolTip(nudSaldoInicial, "Saldo con el que se crea la cuenta");
             // 
             // btnCrear
             // 
-            btnCrear.Location = new Point(200, 128);
+            btnCrear.Location = new System.Drawing.Point(200, 128);
             btnCrear.Name = "btnCrear";
-            btnCrear.Size = new Size(76, 26);
+            btnCrear.Size = new System.Drawing.Size(76, 26);
             btnCrear.TabIndex = 6;
             btnCrear.Text = "Crear";
             btnCrear.UseVisualStyleBackColor = true;
-            
+            btnCrear.Click += btnCrear_Click;
+            toolTip1.SetToolTip(btnCrear, "Crear cuenta con los datos introducidos (Enter)");
             // 
             // gbOperaciones
             // 
             gbOperaciones.Controls.Add(nudCantidad);
             gbOperaciones.Controls.Add(btnDepositar);
             gbOperaciones.Controls.Add(btnRetirar);
-            gbOperaciones.Location = new Point(16, 170);
+            gbOperaciones.Location = new System.Drawing.Point(16, 170);
             gbOperaciones.Name = "gbOperaciones";
-            gbOperaciones.Size = new Size(260, 86);
+            gbOperaciones.Size = new System.Drawing.Size(260, 86);
             gbOperaciones.TabIndex = 7;
             gbOperaciones.TabStop = false;
-            gbOperaciones.Text = "desea realizar:";
-
+            gbOperaciones.Text = "Operaciones";
             // 
             // nudCantidad
             // 
             nudCantidad.DecimalPlaces = 2;
-            nudCantidad.Location = new Point(12, 22);
+            nudCantidad.Location = new System.Drawing.Point(12, 22);
             nudCantidad.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             nudCantidad.Name = "nudCantidad";
-            nudCantidad.Size = new Size(120, 27);
+            nudCantidad.Size = new System.Drawing.Size(120, 27);
             nudCantidad.TabIndex = 0;
+            // 
             // btnDepositar
             // 
-            btnDepositar.Location = new Point(140, 16);
+            btnDepositar.Location = new System.Drawing.Point(140, 16);
             btnDepositar.Name = "btnDepositar";
-            btnDepositar.Size = new Size(100, 26);
+            btnDepositar.Size = new System.Drawing.Size(100, 26);
             btnDepositar.TabIndex = 1;
             btnDepositar.Text = "Depositar";
             btnDepositar.UseVisualStyleBackColor = true;
@@ -121,9 +149,9 @@
             // 
             // btnRetirar
             // 
-            btnRetirar.Location = new Point(140, 48);
+            btnRetirar.Location = new System.Drawing.Point(140, 48);
             btnRetirar.Name = "btnRetirar";
-            btnRetirar.Size = new Size(100, 26);
+            btnRetirar.Size = new System.Drawing.Size(100, 26);
             btnRetirar.TabIndex = 2;
             btnRetirar.Text = "Retirar";
             btnRetirar.UseVisualStyleBackColor = true;
@@ -131,9 +159,9 @@
             // 
             // btnMostrar
             // 
-            btnMostrar.Location = new Point(16, 266);
+            btnMostrar.Location = new System.Drawing.Point(16, 266);
             btnMostrar.Name = "btnMostrar";
-            btnMostrar.Size = new Size(120, 26);
+            btnMostrar.Size = new System.Drawing.Size(120, 26);
             btnMostrar.TabIndex = 8;
             btnMostrar.Text = "Mostrar cuenta";
             btnMostrar.UseVisualStyleBackColor = true;
@@ -141,9 +169,9 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(156, 266);
+            btnLimpiar.Location = new System.Drawing.Point(156, 266);
             btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(120, 26);
+            btnLimpiar.Size = new System.Drawing.Size(120, 26);
             btnLimpiar.TabIndex = 9;
             btnLimpiar.Text = "Limpiar";
             btnLimpiar.UseVisualStyleBackColor = true;
@@ -151,19 +179,23 @@
             // 
             // txtSalida
             // 
-            txtSalida.Location = new Point(292, 16);
+            txtSalida.Location = new System.Drawing.Point(292, 16);
             txtSalida.Multiline = true;
             txtSalida.Name = "txtSalida";
             txtSalida.ReadOnly = true;
-            txtSalida.ScrollBars = ScrollBars.Vertical;
-            txtSalida.Size = new Size(492, 276);
+            txtSalida.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            txtSalida.Size = new System.Drawing.Size(492, 276);
             txtSalida.TabIndex = 10;
+            txtSalida.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            txtSalida.Font = new System.Drawing.Font("Consolas", 9F);
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(802, 311);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(802, 311);
             Controls.Add(txtSalida);
             Controls.Add(btnLimpiar);
             Controls.Add(btnMostrar);
@@ -175,12 +207,15 @@
             Controls.Add(lblNumero);
             Controls.Add(txtTitular);
             Controls.Add(lblTitular);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "Form1";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Banco - Pruebas Cuenta";
+            AcceptButton = btnCrear;
             gbOperaciones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudCantidad).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudSaldoInicial).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

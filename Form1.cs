@@ -6,13 +6,55 @@ namespace CuentaDeBancoForms
     public partial class Form1 : Form
     {
         private Cuenta? cuenta;
+        private readonly ClientesRegistrados clientesRegistrados = new();
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+            var titular = txtTitular.Text.Trim();
+            var numero = txtNumero.Text.Trim();
+            var saldoInicial = (double)nudSaldoInicial.Value;
+
+            if (string.IsNullOrWhiteSpace(titular))
+            {
+                MessageBox.Show("Introduce el titular.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTitular.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(numero))
+            {
+                MessageBox.Show("Introduce el número de cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNumero.Focus();
+                return;
+            }
+
+            if (clientesRegistrados.ObtenerPorNumero(numero) != null)
+            {
+                MessageBox.Show("Ya existe una cuenta con ese número.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNumero.Focus();
+                return;
+            }
+
+            var nueva = new Cuenta(titular, saldoInicial, numero);
+            var añadido = clientesRegistrados.AgregarCliente(nueva);
+            if (!añadido)
+            {
+                MessageBox.Show("No se pudo crear la cuenta (posible duplicado).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            cuenta = nueva;
+            txtSalida.Clear();
+            txtSalida.AppendText($"Cuenta creada:\r\n{cuenta}\r\n");
+            txtTitular.SelectAll();
+            txtTitular.Focus();
+        }
+
         private void btnDepositar_Click(object sender, EventArgs e)
         {
             if (!VerificarCuenta()) return;
@@ -60,8 +102,10 @@ namespace CuentaDeBancoForms
             txtTitular.Clear();
             txtNumero.Clear();
             nudCantidad.Value = 0;
+            nudSaldoInicial.Value = 0;
             txtSalida.Clear();
             cuenta = null;
+            txtTitular.Focus();
         }
 
         private bool VerificarCuenta()
