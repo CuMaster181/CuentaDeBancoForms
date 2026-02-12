@@ -20,6 +20,11 @@
         private System.Windows.Forms.TextBox txtSalida;
         private System.Windows.Forms.ToolTip toolTip1;
 
+        // Nuevos controles para la lista de clientes
+        private System.Windows.Forms.ListBox lstClientes;
+        private System.Windows.Forms.Button btnCargarClientes;
+        private System.Windows.Forms.Button btnSeleccionarCliente;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -46,6 +51,12 @@
             btnLimpiar = new System.Windows.Forms.Button();
             txtSalida = new System.Windows.Forms.TextBox();
             toolTip1 = new System.Windows.Forms.ToolTip();
+
+            // Inicialización nuevos controles
+            lstClientes = new System.Windows.Forms.ListBox();
+            btnCargarClientes = new System.Windows.Forms.Button();
+            btnSeleccionarCliente = new System.Windows.Forms.Button();
+
             gbOperaciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudCantidad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudSaldoInicial).BeginInit();
@@ -157,22 +168,54 @@
             btnRetirar.UseVisualStyleBackColor = true;
             btnRetirar.Click += btnRetirar_Click;
             // 
+            // lstClientes
+            // 
+            lstClientes.FormattingEnabled = true;
+            lstClientes.ItemHeight = 20;
+            lstClientes.Location = new System.Drawing.Point(16, 266);
+            lstClientes.Name = "lstClientes";
+            lstClientes.Size = new System.Drawing.Size(260, 124);
+            lstClientes.TabIndex = 8;
+            lstClientes.DoubleClick += lstClientes_DoubleClick;
+            toolTip1.SetToolTip(lstClientes, "Doble clic para seleccionar una cuenta destino");
+            // 
+            // btnCargarClientes
+            // 
+            btnCargarClientes.Location = new System.Drawing.Point(16, 402);
+            btnCargarClientes.Name = "btnCargarClientes";
+            btnCargarClientes.Size = new System.Drawing.Size(120, 26);
+            btnCargarClientes.TabIndex = 9;
+            btnCargarClientes.Text = "Cargar clientes";
+            btnCargarClientes.UseVisualStyleBackColor = true;
+            btnCargarClientes.Click += btnCargarClientes_Click;
+            // 
+            // btnSeleccionarCliente
+            // 
+            btnSeleccionarCliente.Location = new System.Drawing.Point(156, 402);
+            btnSeleccionarCliente.Name = "btnSeleccionarCliente";
+            btnSeleccionarCliente.Size = new System.Drawing.Size(120, 26);
+            btnSeleccionarCliente.TabIndex = 10;
+            btnSeleccionarCliente.Text = "Seleccionar";
+            btnSeleccionarCliente.UseVisualStyleBackColor = true;
+            btnSeleccionarCliente.Click += btnSeleccionarCliente_Click;
+            toolTip1.SetToolTip(btnSeleccionarCliente, "Seleccionar la cuenta marcada en la lista");
+            // 
             // btnMostrar
             // 
-            btnMostrar.Location = new System.Drawing.Point(16, 266);
+            btnMostrar.Location = new System.Drawing.Point(16, 440);
             btnMostrar.Name = "btnMostrar";
             btnMostrar.Size = new System.Drawing.Size(120, 26);
-            btnMostrar.TabIndex = 8;
+            btnMostrar.TabIndex = 11;
             btnMostrar.Text = "Mostrar cuenta";
             btnMostrar.UseVisualStyleBackColor = true;
             btnMostrar.Click += btnMostrar_Click;
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new System.Drawing.Point(156, 266);
+            btnLimpiar.Location = new System.Drawing.Point(156, 440);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new System.Drawing.Size(120, 26);
-            btnLimpiar.TabIndex = 9;
+            btnLimpiar.TabIndex = 12;
             btnLimpiar.Text = "Limpiar";
             btnLimpiar.UseVisualStyleBackColor = true;
             btnLimpiar.Click += btnLimpiar_Click;
@@ -184,8 +227,8 @@
             txtSalida.Name = "txtSalida";
             txtSalida.ReadOnly = true;
             txtSalida.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            txtSalida.Size = new System.Drawing.Size(492, 276);
-            txtSalida.TabIndex = 10;
+            txtSalida.Size = new System.Drawing.Size(492, 450);
+            txtSalida.TabIndex = 13;
             txtSalida.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -195,10 +238,13 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(802, 311);
+            ClientSize = new System.Drawing.Size(802, 480);
             Controls.Add(txtSalida);
             Controls.Add(btnLimpiar);
             Controls.Add(btnMostrar);
+            Controls.Add(btnSeleccionarCliente);
+            Controls.Add(btnCargarClientes);
+            Controls.Add(lstClientes);
             Controls.Add(gbOperaciones);
             Controls.Add(btnCrear);
             Controls.Add(nudSaldoInicial);

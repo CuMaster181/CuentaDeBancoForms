@@ -112,10 +112,54 @@ namespace CuentaDeBancoForms
         {
             if (cuenta == null)
             {
-                MessageBox.Show("Primero crea una cuenta.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Primero crea una cuenta o selecciona una desde la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
             return true;
+        }
+
+        // Nuevo: carga los clientes registrados en la lista
+        private void btnCargarClientes_Click(object sender, EventArgs e)
+        {
+            lstClientes.Items.Clear();
+            var lista = clientesRegistrados.ObtenerClientes();
+            foreach (var c in lista)
+            {
+                lstClientes.Items.Add(c);
+            }
+
+            if (lstClientes.Items.Count == 0)
+            {
+                txtSalida.AppendText("No hay clientes registrados.\r\n");
+            }
+            else
+            {
+                txtSalida.AppendText($"Cargados {lstClientes.Items.Count} cliente(s).\r\n");
+            }
+        }
+
+        // Nuevo: selecciona la cuenta marcada en la lista como la cuenta activa
+        private void btnSeleccionarCliente_Click(object sender, EventArgs e)
+        {
+            if (lstClientes.SelectedItem is Cuenta seleccion)
+            {
+                cuenta = seleccion;
+                txtSalida.AppendText($"Cuenta seleccionada:\r\n{cuenta}\r\n");
+            }
+            else
+            {
+                MessageBox.Show("Selecciona una cuenta de la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Nuevo: doble clic en la lista selecciona la cuenta rápidamente
+        private void lstClientes_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstClientes.SelectedItem is Cuenta seleccion)
+            {
+                cuenta = seleccion;
+                txtSalida.AppendText($"Cuenta seleccionada:\r\n{cuenta}\r\n");
+            }
         }
     }
 }
